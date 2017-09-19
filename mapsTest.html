@@ -1,49 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple markers</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body onload="foo()">
-    <div id="map"></div>
-    <script>
+	<head>
+		<style>
+		/* Always set the map height explicitly to define the size of the div
+		* element that contains the map. */
+		#map {
+		height: 100%;
+		}
+		/* Optional: Makes the sample page fill the window. */
+		html, body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		}
+		</style>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>	
+	</head>
+	<body>
+		<div id="map"></div>
+		
+		<script>
 
-	  var KEY;
-	  function foo() {
-		KEY = prompt("Bitte geben Sie Ihren API Key ein");
-	  }
-	
-      function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+		var KEY = "MyKey";
+		//console.log(KEY);
+		
+		// IMPORTANT: ALWAYS DELETE KEY BEFORE PUSHING TO GIT		
+		//KEY = "AIzaSyBgpChaE26CDM9L8yTQMylHY027FUODUuE";
+		KEY = prompt("Bitte geben Sie Ihren API Key ein!");
+		//console.log(KEY);
+		
+		$.getScript("https://maps.googleapis.com/maps/api/js?key=" + KEY + "&callback=initMap", function(){		 		  
+			console.log("Maps API loaded");
+			// here you can use anything you defined in the loaded script
+		});		
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
-        });
+		var map;
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 13,
+			center: new google.maps.LatLng(47.671866, 9.478732), // center großraum
+			//center: new google.maps.LatLng(47.660219, 9.473810), // center fn
+			mapTypeId: 'roadmap'
+			});
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=" + KEY + "&callback=initMap">
-    </script>
-  </body>
+			// Create a <script> tag and set the USGS URL as the source.
+			var script = document.createElement('script');
+			// This example uses a local copy of the GeoJSON stored at
+			// http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+			script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+			document.getElementsByTagName('head')[0].appendChild(script);
+		}
+
+		var myJson = {"sightings":[{"name":"Garados","time":"2017_9_19-12:04:27","location":"47.649113,9.480904"},{"name":"Rizeros","time":"2017_9_19-12:24:58","location":"47.65633,9.456586"},{"name":"Turtok","time":"2017_9_19-13:21:15","location":"47.649525,9.466601"},{"name":"Larvitar","time":"2017_9_19-17:57:15","location":"47.660587,9.441717"},{"name":"Nockchan","time":"2017_9_19-18:13:03","location":"47.690182,9.48912"},{"name":"Voltilamm","time":"2017_9_19-19:21:17","location":"47.653641,9.484278"},{"name":"Larvitar","time":"2017_9_19-19:26:24","location":"47.673267,9.415026"},{"name":"Dragonir","time":"2017_9_19-20:16:10","location":"47.651279,9.470701"},{"name":"Aquana","time":"2017_9_19-19:54:17","location":"47.65868,9.432887"},{"name":"Voltilamm","time":"2017_9_19-21:02:01","location":"47.668877,9.49701"},{"name":"Chaneira","time":"2017_9_19-21:23:12","location":"47.688171,9.489912"},{"name":"Turtok","time":"2017_9_19-21:30:16","location":"47.650932,9.491666"},{"name":"Dragonir","time":"2017_9_19-01:31:12","location":"47.649738,9.462184"},{"name":"Nockchan","time":"2017_9_19-04:53:40","location":"47.691799,9.492987"},{"name":"Rizeros","time":"2017_9_19-07:16:19","location":"47.667671,9.418915"},{"name":"Meganie","time":"2017_9_19-08:42:08","location":"47.662083,9.462999"},{"name":"Voltilamm","time":"2017_9_19-09:10:26","location":"47.662167,9.46293"},{"name":"Kicklee","time":"2017_9_19-09:12:06","location":"47.691456,9.487789"},{"name":"Porygon","time":"2017_9_19-10:40:40","location":"47.661751,9.465133"}]};
+		var myIterator = myJson.sightings;
+		var laenge = myIterator.length;
+		//console.log(laenge);
+
+		var latArray = [];
+		var lonArray = [];
+		var monArray = [];
+		
+		for (var i = 0; i < laenge; i++) {
+			
+			var myCoords = JSON.stringify(myIterator[i].location);
+			var myMon = JSON.stringify(myIterator[i].name);
+			
+			var lat = myCoords.split(",")[0].slice(1);
+			var lon = myCoords.split(",")[1].slice(0, -1);				
+			var mon = myMon.slice(1,-1);
+			
+			//console.log(mon);
+			//console.log(myCoords);
+			
+			latArray.push(parseFloat(lat));
+			lonArray.push(parseFloat(lon));
+			monArray.push(mon);
+			
+			//console.log(lat + "-" + lon);
+		}
+
+		// TODO: heatmap
+		// https://developers.google.com/maps/documentation/javascript/earthquakes?hl=de
+
+		// TODO: calculate center point of all points (sum over all x and sum over all y - divide by count)
+
+		// TODO: calculate zoom level auto
+		// https://stackoverflow.com/questions/6048975/google-maps-v3-how-to-calculate-the-zoom-level-for-a-given-bounds
+
+		// https://developers.google.com/maps/documentation/javascript/examples/marker-simple?hl=de#probieren-sie-es-selbst-aus
+		// https://developers.google.com/maps/documentation/javascript/importing_data?hl=de
+		
+		
+		// Loop through the results array and place a marker for each
+		// set of coordinates.
+		window.eqfeed_callback = function(results) {
+			for (var i = 0; i < latArray.length; i++) {				
+				
+				//console.log(latArray.length + "-" + latArray[i]);
+				
+				var latLng = new google.maps.LatLng(latArray[i], lonArray[i]);
+				
+				var marker = new google.maps.Marker({
+					position: latLng,
+					map: map,
+					clickable: true,
+					label: monArray[i],
+					title: monArray[i]
+				});
+			}
+		}	
+		</script>	    
+	</body>
 </html>
