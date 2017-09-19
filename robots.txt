@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow: /
+
+User-Agent: Googlebot
+Allow: /pixma140.github.io/pogoteamfn/
+
+User-Agent: Googlebot-Image
+Allow: /pixma140.github.io/pogoteamfn/
+
+User-Agent: Adsbot-Google
+Allow: /pixma140.github.io/pogoteamfn/
+
+Sitemap: http://pixma140.github.io/pogoteamfn/sitemal.xml
