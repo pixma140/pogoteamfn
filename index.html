@@ -24,6 +24,21 @@
 
 		<!-- viewport for mobile friendly -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- style for toogle buttons -->
+		<style>
+			.panel-heading .accordion-toggle:after {
+				/* symbol for "opening" panels */
+				font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+				content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+				float: right;        /* adjust as needed */
+				color: grey;         /* adjust as needed */
+			}
+			.panel-heading .accordion-toggle.collapsed:after {
+				/* symbol for "collapsed" panels */
+				content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+			}
+		</style>
 	</head>
 
 	<body>
@@ -88,71 +103,98 @@
 					</p>
 
 					<p style="text-align:left">Alternativ: <a target="_blank" href="https://t.me/raidsFN">@raidsFN</a> in Telegram oder: <a target="_blank" href="https://t.me/raidsFN">t.me/raidsFN</a></p></p>
-					
-					<button data-toggle="collapse" data-target="#toggleTermine" class="btn btn-default">Aufklappen falls der Raidbot down ist</button>
-
-					<div id="toggleTermine" class="collapse">
-						<p>Sobald eine vollständige Sichtung ihren Weg in die Sichtungsgruppe gefunden hat, wird die Sichtung von einem Admin
-						als Umfrage in die Termingruppe zur Abstimmung übertragen. Alle Mitglieder der Gruppen können an den Umfragen teilnehmen
-						und zu der Zeit, zu der sie vor Ort sein können, abstimmen. Die Stimmen können durch klicken auf eine andere Uhrzeit
-						geändert oder durch klicken auf die abgestimmte Uhrzeit zurückgezogen werden.</p>
-						
-						<p>Sollte jemand mit weiteren Personen kommen, die nicht in der Gruppe abstimmen können, ist es empfehlenswert im Nicknamen
-						am Ende ein (+x) zu ergänzen, wobei x der Zahl der weiteren Personen entspricht.</p>
-						
-						<p>Im Moment sind wir genug Admins, um den Sichtungsmeldungen nachzukommen. Sollten mehr Admins benötigt werden, suchen wir
-						uns selbst Verstärkung für das Team.</p> 
-					</div>
+										
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+									Aufklappen falls der MyPGoBot oder die GoMap down ist.
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOne" class="panel-collapse collapse">
+							<div class="panel-body">
+								<p>Sobald eine vollständige Sichtung ihren Weg in die Sichtungsgruppe gefunden hat, wird die Sichtung von einem Admin
+								als Umfrage in die Termingruppe zur Abstimmung übertragen. Alle Mitglieder der Gruppen können an den Umfragen teilnehmen
+								und zu der Zeit, zu der sie vor Ort sein können, abstimmen. Die Stimmen können durch klicken auf eine andere Uhrzeit
+								geändert oder durch klicken auf die abgestimmte Uhrzeit zurückgezogen werden.</p>
+								
+								<p>Sollte jemand mit weiteren Personen kommen, die nicht in der Gruppe abstimmen können, ist es empfehlenswert im Nicknamen
+								am Ende ein (+x) zu ergänzen, wobei x der Zahl der weiteren Personen entspricht.</p>
+								
+								<p>Im Moment sind wir genug Admins, um den Sichtungsmeldungen nachzukommen. Sollten mehr Admins benötigt werden, suchen wir
+								uns selbst Verstärkung für das Team.</p> 					
+							</div>
+						</div>
+					</div>														
 				</div>				
 
 				<div id="sichtungsgruppe" class="col-md-4">
-					<h2 style="text-align:left">Sichtungsgruppe<br> <small>(momentan außer Betrieb)</small></h2>
+					<h2 style="text-align:left">Sichtungsgruppe<br> <small>(in Betrieb wenn die GoMap down ist)</small></h2>
+									
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOuter">
+									Aufklappen falls der MyPGoBot oder die GoMap down ist.
+								</a>
+							</h4>
+						</div>
+						<div id="collapseOuter" class="panel-collapse collapse">
+							<div class="panel-body">
+								<p>Um Sichtungen von Raids zu teilen und dadurch die Raids so gut wie möglich zu organisieren, haben wir eine Gruppe erstellt.
+								Jedes Mitglied der Gruppe kann die Raids in seiner Nähe (vorzugsweise lvl 3 Machomai, lvl 4 und lvl 5) an denen er oder
+								andere Interesse haben, teilen. Diese Raid-Sichtungen können dann von einem Admin zur Termingruppe übernommen werden.</p> 
 
-					<button data-toggle="collapse" data-target="#toggleSichtungen" class="btn btn-default">Aufklappen falls der Raidbot down ist</button>
+								<p>Um die Erstellung bzw. Einstellung der Termine für die Admins möglichst einfach zu halten, ist es erforderlich die folgenden
+								Informationen bei der Sichtung anzugeben: Pokémon, Arena, Enduhrzeit des Raids und ggf. GoogleMap-Link zur Arena.
+								Bitte <kbd>keine</kbd> Screenshots!</p></p>
 
-					<div id="toggleSichtungen" class="collapse">
-						<p>Um Sichtungen von Raids zu teilen und dadurch die Raids so gut wie möglich zu organisieren, haben wir eine Gruppe erstellt.
-						Jedes Mitglied der Gruppe kann die Raids in seiner Nähe (vorzugsweise lvl 3 Machomai, lvl 4 und lvl 5) an denen er oder
-						andere Interesse haben, teilen. Diese Raid-Sichtungen können dann von einem Admin zur Termingruppe übernommen werden.</p> 
+								<p>So könnte eine Raid Sichtung aussehen:</p>
+								
+								<div class="panel panel-default">
+									<div class="panel-body">						
+										<p>Relaxo bis 18.30 Uhr an der Arena: "Der Blaue Elefant" <br><br>
+										<a target="_blank" href="https://www.google.com/maps/?daddr=47.659309,9.484539">https://www.google.com/maps/?daddr=47.659309,9.484539</a>"</p>
+									</div>
+								</div>
+								
+								<p>Zur Sichtungsgruppe:
+								<a target="_blank" href="https://t.me/sichtungenFN"><img src="img/sichtungen.jpg" width="30px" height="auto" alt="Link"></a></p>
 
-						<p>Um die Erstellung bzw. Einstellung der Termine für die Admins möglichst einfach zu halten, ist es erforderlich die folgenden
-						Informationen bei der Sichtung anzugeben: Pokémon, Arena, Enduhrzeit des Raids und ggf. GoogleMap-Link zur Arena.
-						Bitte <kbd>keine</kbd> Screenshots!</p></p>
+								<p style="text-align:left">Alternativ: <a target="_blank" href="https://t.me/sichtungenFN">@sichtungenFN</a> in Telegram oder: <a target="_blank" href="https://t.me/sichtungenFN">t.me/sichtungenFN</a></p></p>
+								
+								
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<h4 class="panel-title">
+											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseInner">
+												Hier klicken für eine Anleitung
+											</a>
+										</h4>
+									</div>
+									<div id="collapseInner" class="panel-collapse collapse">
+										<div class="panel-body">
+											Pokemon Name + Enduhrzeit + Arenaname + Google Maps Link (Anleitung unten) <br><br>
 
-						<p>So könnte eine Raid Sichtung aussehen:</p>
-						
-						<div class="panel panel-default">
-							<div class="panel-body">						
-								<p>Relaxo bis 18.30 Uhr an der Arena: "Der Blaue Elefant" <br><br>
-								<a target="_blank" href="https://www.google.com/maps/?daddr=47.659309,9.484539">https://www.google.com/maps/?daddr=47.659309,9.484539</a>"</p>
+											Bitte alle Informationen in eine Nachricht packen. Wenn etwas korrigiert werden muss, eigene Nachricht antippen und auf bearbeiten drücken.
+											Bitte keine zweite Nachricht senden, sondern die andere editieren. <br>
+											Außerdem KEINE Screenshots und KEINE Audio Nachrichten. <br><br>
+
+											Anleitung Google Maps Link bekommen: <br><br>
+											
+											<ol>
+												<li><a target="_blank" href="https://www.gomap.eu/friedrichshafen">https://www.gomap.eu/friedrichshafen</a> aufrufen</li>
+												<li>Arena suchen und diese anklicken</li>
+												<li>"Get directions" gedrückt halten (oder Rechtsklick am PC)</li>
+												<li>"Linkadresse kopieren"</li>
+												<li>In die Sichtungsmeldung kopieren</li>
+											</ol>				
+										</div>
+									</div>
+								</div>												
 							</div>
 						</div>
-						
-						<p>Zur Sichtungsgruppe:
-						<a target="_blank" href="https://t.me/sichtungenFN"><img src="img/sichtungen.jpg" width="30px" height="auto" alt="Link"></a></p>
-
-						<p style="text-align:left">Alternativ: <a target="_blank" href="https://t.me/sichtungenFN">@sichtungenFN</a> in Telegram oder: <a target="_blank" href="https://t.me/sichtungenFN">t.me/sichtungenFN</a></p></p>
-						
-						<button data-toggle="collapse" data-target="#toggleAnleitung" class="btn btn-default">Hier klicken für eine Anleitung</button> <br><br>
-					
-						<div style="text-align:left" id="toggleAnleitung" class="collapse">						
-							Pokemon Name + Enduhrzeit + Arenaname + Google Maps Link (Anleitung unten) <br><br>
-
-							Bitte alle Informationen in eine Nachricht packen. Wenn etwas korrigiert werden muss, eigene Nachricht antippen und auf bearbeiten drücken.
-							Bitte keine zweite Nachricht senden, sondern die andere editieren. <br>
-							Außerdem KEINE Screenshots und KEINE Audio Nachrichten. <br><br>
-
-							Anleitung Google Maps Link bekommen: <br><br>
-							
-							<ol>
-								<li><a target="_blank" href="https://www.gomap.eu/friedrichshafen">https://www.gomap.eu/friedrichshafen</a> aufrufen</li>
-								<li>Arena suchen und diese anklicken</li>
-								<li>"Get directions" gedrückt halten (oder Rechtsklick am PC)</li>
-								<li>"Linkadresse kopieren"</li>
-								<li>In die Sichtungsmeldung kopieren</li>
-							</ol>
-							
-						</div>											
 					</div>
 				</div>				
 
@@ -169,7 +211,6 @@
 
 					<p style="text-align:left">Alternativ: <a target="_blank" href="https://t.me/pogoFN">@pogoFN</a> in Telegram oder: <a target="_blank" href="https://t.me/pogoFN">t.me/pogoFN</a></p></p>		  		  		  		  		  		  		  		 
 				</div>
-
 			</div>
 
 			<div class="row">
